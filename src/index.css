@@ -1,0 +1,532 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #020617;
+  color: #F8FAFC;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Deep space background with subtle stars */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(2px 2px at 20px 30px, #F8FAFC, rgba(248, 250, 252, 0)),
+    radial-gradient(2px 2px at 60px 70px, #F8FAFC, rgba(248, 250, 252, 0)),
+    radial-gradient(1px 1px at 50px 50px, #F8FAFC, rgba(248, 250, 252, 0)),
+    radial-gradient(1px 1px at 130px 80px, #F8FAFC, rgba(248, 250, 252, 0)),
+    radial-gradient(2px 2px at 90px 10px, #F8FAFC, rgba(248, 250, 252, 0)),
+    radial-gradient(1px 1px at 200px 40px, #F8FAFC, rgba(248, 250, 252, 0)),
+    linear-gradient(180deg, #020617 0%, #061426 50%, #020617 100%);
+  background-size: 
+    200px 200px,
+    300px 300px,
+    250px 250px,
+    350px 350px,
+    280px 280px,
+    400px 400px,
+    100% 100%;
+  background-position: 
+    0 0,
+    40px 60px,
+    130px 270px,
+    70px 100px,
+    200px 50px,
+    300px 100px,
+    0 0;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #061426;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2563EB, #22D3EE);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #22D3EE, #2563EB);
+}
+
+/* Space glass morphism effect */
+.glass {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(96, 165, 250, 0.20);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-light {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+}
+
+/* Space card styles */
+.premium-card {
+  background: rgba(11, 27, 52, 0.7);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-card:hover {
+  background: rgba(11, 27, 52, 0.85);
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+}
+
+/* Space gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #22D3EE 0%, #2563EB 50%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.2));
+}
+
+/* Cyan glow effect */
+.cyan-glow {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+  border-color: rgba(34, 211, 238, 0.3);
+}
+
+.cyan-glow:hover {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+  border-color: rgba(34, 211, 238, 0.5);
+}
+
+/* Blue glow effect */
+.blue-glow {
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* Space buttons */
+.space-button-primary {
+  background: linear-gradient(135deg, #2563EB 0%, #22D3EE 100%);
+  color: white;
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+  cursor: pointer;
+}
+
+.space-button-primary:hover {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.6), 0 8px 16px rgba(34, 211, 238, 0.2);
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.6);
+}
+
+.space-button-secondary {
+  background: transparent;
+  color: #22D3EE;
+  border: 2px solid rgba(34, 211, 238, 0.5);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.space-button-secondary:hover {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.8);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+  transform: translateY(-2px);
+}
+
+/* HUD text elements */
+.hud-label {
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(34, 211, 238, 0.6);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #22D3EE;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Space section divider */
+.space-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+  margin: 2rem 0;
+}
+
+/* Orbital ring animation */
+@keyframes orbital-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.orbital-ring {
+  animation: orbital-rotation 20s linear infinite;
+}
+
+/* Custom cursor styles */
+:root {
+  --cursor-accent: #22D3EE; /* default cyan */
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Do not hide the system cursor globally — the JS component will hide it when active. */
+
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    display: block;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .custom-cursor .cursor-core {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cursor-accent);
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.9), 0 0 20px rgba(34, 211, 238, 0.12);
+    transform: translate3d(-50%, -50%, 0);
+    transition: transform 80ms linear, opacity 120ms linear;
+    will-change: transform, opacity;
+    opacity: 1;
+  }
+
+  .custom-cursor .cursor-ring {
+    position: fixed;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(34, 211, 238, 0.18);
+    transform: translate3d(-50%, -50%, 0);
+    transition: width 220ms ease, height 220ms ease, border-color 180ms ease, transform 120ms linear, opacity 120ms linear;
+    will-change: transform, width, height;
+    backdrop-filter: blur(0px);
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.08) inset;
+    opacity: 1;
+  }
+
+  .custom-cursor .cursor-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .custom-cursor .cursor-particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(34,211,238,0.95), rgba(139,92,246,0.6));
+    transform: translate3d(-50%, -50%, 0) scale(0.8);
+    opacity: 0;
+    will-change: transform, opacity;
+    mix-blend-mode: screen;
+  }
+
+  .custom-cursor .cursor-ripple {
+    position: fixed;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(34,211,238,0.25);
+    transform: translate3d(-50%, -50%, 0) scale(0.6);
+    opacity: 0;
+    will-change: transform, opacity;
+    pointer-events: none;
+  }
+
+  .custom-cursor .cursor-core.entry {
+    transform: translate3d(-50%, -50%, 0) scale(0.3);
+    opacity: 0.8;
+  }
+
+  .custom-cursor .cursor-ring.entry {
+    transform: translate3d(-50%, -50%, 0) scale(0.2);
+    opacity: 0.0;
+  }
+
+  /* Hover states */
+  .cursor-hover-link {
+    border-color: rgba(34, 211, 238, 0.45) !important;
+    box-shadow: 0 0 18px rgba(34,211,238,0.18) !important;
+  }
+
+  .cursor-hover-button {
+    width: 42px !important;
+    height: 42px !important;
+    border-color: rgba(34,211,238,0.6) !important;
+    box-shadow: 0 0 34px rgba(34,211,238,0.22) !important;
+  }
+
+  .cursor-hover-bright {
+    box-shadow: 0 0 16px rgba(34,211,238,0.95), 0 0 28px rgba(34,211,238,0.25) !important;
+  }
+
+  /* ripple animation */
+  .ripple-animate {
+    animation: cursor-ripple 420ms ease-out forwards;
+  }
+
+  @keyframes cursor-ripple {
+    0% { transform: translate3d(-50%, -50%, 0) scale(0.6); opacity: 0.9 }
+    100% { transform: translate3d(-50%, -50%, 0) scale(2.2); opacity: 0 }
+  }
+}
+
+/* keep particles and cursor hidden on touch devices */
+@media (pointer: coarse) {
+  .custom-cursor { display: none !important; }
+}
+
+
+/* Floating space objects animations */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(-20px) translateX(0px);
+  }
+  75% {
+    transform: translateY(-10px) translateX(-5px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-30px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes drift-left {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(-50px) translateY(-20px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+@keyframes drift-right {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(50px) translateY(20px);
+  }
+  100% {
+    transform: translateX(0px) translateY(0px);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg) translateZ(0);
+  }
+  100% {
+    transform: rotate(360deg) translateZ(0);
+  }
+}
+
+@keyframes pulse-scale {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes meteor-fall {
+  0% {
+    transform: translateY(-100px) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) translateX(100px);
+    opacity: 0;
+  }
+}
+
+@keyframes satellite-orbit {
+  0% {
+    transform: rotate(0deg) translateX(60px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(60px) rotate(-360deg);
+  }
+}
+
+/* Space decoration classes */
+.float-object {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.drift-left {
+  animation: drift-left 8s ease-in-out infinite;
+}
+
+.drift-right {
+  animation: drift-right 8s ease-in-out infinite;
+}
+
+.spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
+
+.pulse-glow-scale {
+  animation: pulse-scale 3s ease-in-out infinite;
+}
+
+.meteor-falling {
+  animation: meteor-fall 3s linear infinite;
+}
+
+.satellite-orbiting {
+  animation: satellite-orbit 10s linear infinite;
+}
+
+/* Space object styling */
+.space-object {
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.3));
+}
+
+.planet {
+  border-radius: 50%;
+  filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.5));
+}
+
+.planet-small {
+  width: 20px;
+  height: 20px;
+  background: rgba(139, 92, 246, 0.4);
+  border: 1px solid rgba(139, 92, 246, 0.6);
+}
+
+.planet-medium {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 30% 30%, rgba(37, 99, 235, 0.6), rgba(37, 99, 235, 0.2));
+  border: 2px solid rgba(37, 99, 235, 0.4);
+}
+
+.planet-large {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 35% 35%, rgba(34, 211, 238, 0.5), rgba(34, 211, 238, 0.1));
+  border: 2px solid rgba(34, 211, 238, 0.3);
+}
+
+.asteroid {
+  width: 10px;
+  height: 10px;
+  background: rgba(203, 213, 225, 0.6);
+  border-radius: 2px;
+  filter: drop-shadow(0 0 4px rgba(203, 213, 225, 0.4));
+}
+
+.asteroids-group {
+  display: inline-block;
+  position: relative;
+}
+
+.rocket-icon {
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.4));
+  transform-origin: center;
+}
+
+.satellite-icon {
+  filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.5));
+}
+
+.star-burst {
+  position: relative;
+  width: 2px;
+  height: 2px;
+  background: #F8FAFC;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(248, 250, 252, 0.8);
+}
